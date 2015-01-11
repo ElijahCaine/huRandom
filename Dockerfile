@@ -1,6 +1,6 @@
 FROM base/archlinux:latest
 
-MAINTAINER Elijah Caine McDade-Voigt
+MAINTAINER Elijah Caine McDade-Voigt, elijahcainemv@gmail
 
 ENV APP_IP 0.0.0.0
 
