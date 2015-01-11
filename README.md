@@ -11,6 +11,19 @@ Status
 ------
 Doesn't work :P
 
+Development with docker
+-----------------------
+To build an image, run:
+```shell
+$ docker build -t ElijahCaine/huRandom .
+```
+
+To run the container, use:
+```shell
+$ docker run -p 5000:5000 ElijahCaine/hurandom
+```
+
+
 Goals
 -----
 1. To study the relationship between people and randomness through crowdsourced
