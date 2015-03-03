@@ -10,8 +10,8 @@
         <a href="{{ url_for('logout') }}">log out</a>
     {% endif %}
     </div>
-    {% for message in get_flashed_message() %}
-        <div class=flash>{{ messag }}</div>
+    {% for message in get_flashed_messages() %}
+        <div class=flash>{{ message }}</div>
     {% endfor %}
-    {% block body %}{% vendblock %}
+    {% block body %}{% endblock %}
 </div>

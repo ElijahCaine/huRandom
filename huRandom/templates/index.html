@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block body %}
+    {% if session.logged_in %}
+        <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+            <dl>
+                <dt>Enter Your Random Number:
+                <dd><input type=text name=text>
+                <dd><input type=submit value=Submit>
+            </dl>
+        </form>
+    {% endif %}
+    <ul class=entries>
+    {% for entries in entries %}
+        <li> {{ entries.text|safe }}
+    {% else %}
+        <li><em>The database is empty!</em>
+    {% endfor %}
+    </ul>
+
+{% endblock %}
+
