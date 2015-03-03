@@ -34,7 +34,7 @@ def show_entries():
     db = get_db()
     cur = g.db.execute('select text from entries order by id desc')
     entries = [dict(text=row[1]) for row in cur.fetchall()]
-    return render_template('templates/login.html', entries=entries)
+    return render_template('show_entries.html', entries=entries)
 
 @app.route('/add', methods=['POST'])
 def add_entry():
