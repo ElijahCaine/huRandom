@@ -1,0 +1,8 @@
+# cp /path/to/config.py.dist /path/to/config.py
+# edit config.py
+# export HURANDOM_SETTINGS=/path/to/config.py
+DATABASE = '/tmp/flaskr.db' # location of database
+DEBUG = True                # `True` -> Dev, `False` -> prod
+SECRET_KEY = ''             # Super Secret
+USERNAME = ''               # Login username
+PASSWORD = ''               # Login Password
