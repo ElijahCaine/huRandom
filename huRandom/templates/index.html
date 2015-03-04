@@ -1,14 +1,27 @@
 {% extends "layout.html" %}
 {% block body %}
-    {% if session.logged_in %}
-        <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
-            <dl>
-                <dt>Enter Your Random Number:
-                <dd><input type=text name=text>
-                <dd><input type=submit value=Submit>
-            </dl>
-        </form>
-    {% endif %}
+    <div id="content_hr">
+        <div class="row">
+
+        {% if session.logged_in %}
+            <div class="col-md-7" id="number_hr">
+                <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+                    <dl>
+                        <dt>Enter Your Random Number:
+                        <dd><input type="text" name="user_input" class="form-control">
+                        <dd><input type="submit" value="Submit" class="btn btn-primary" id="submit_btn_hr">
+                    </dl>
+                </form>
+            </div>
+        {% endif %}
+
+            <div class="col-md-5" id="data_hr">
+                <br>
+                <button type="button" class="btn btn-danger">No Thanks. Just the Data please.</button>
+            </div>
+
+        </div>
+    </div>
     <ul class=entries>
     {% for entries in entries %}
         <li> {{ entries.text|safe }}
@@ -17,5 +30,6 @@
     {% endfor %}
     </ul>
 
-{% endblock %}
+    {% block admin %}{% endblock %}
 
+{% endblock %}

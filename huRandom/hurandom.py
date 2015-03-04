@@ -37,12 +37,12 @@ def show_entries():
 
 @app.route('/add', methods=['POST'])
 def add_entry():
-    if not session.get('logged_in'):
-        abort(401)
+    #if not session.get('logged_in'):
+    #    abort(401)
     g.db.execute('insert into entries (text) values (?)',
-                 [request.form['text']])
+                 [request.form['user_input']])
     g.db.commit()
-    flash('New entry was successfully posted')
+    flash('New entry successfully added')
     return redirect(url_for('show_entries'))
 
 @app.route('/login', methods=['GET', 'POST'])

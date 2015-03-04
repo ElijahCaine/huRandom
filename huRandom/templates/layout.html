@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 </head>
 <div class=page>
     <div id="meta_hr">
@@ -14,27 +14,26 @@
                 <h5> A project by Elijah Caine about 'random' numbers </h5>
             </div>
 
-
-
-
             <div id="intro_hr">
                 <blockquote>
-                    <p>HuRandom is a project developed by Elijah Caine to study the human
-                    mind's ability to generate and comprehend 'random' numbers.</p>
+                    HuRandom is a project developed by Elijah Caine to study the human
+                    mind's ability to generate and comprehend 'random' numbers.
                 <blockquote>
             </div>
+
 
             {% block body %}{% endblock %}
 
-            <div class="metanav">
+
+            <div class="metanav_hr">
             {% if not session.logged_in %}
-                <a href="{{ url_for('login') }}">Admin Login</a>
+                <a href="{{ url_for('login') }}" class="btn btn-default">Admin Login</a>
             {% else %}
-                <a href="{{ url_for('logout') }}">logout</a>
+                <a href="{{ url_for('logout') }}" class="btn btn-default">logout</a>
             {% endif %}
             </div>
             {% for message in get_flashed_messages() %}
-                <div class=flash>{{ message }}</div>
+                <div class="flash">{{ message }}</div>
             {% endfor %}
 
         <div>

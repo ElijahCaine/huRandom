@@ -6,6 +6,11 @@ body {
     height: 100%;
 }
 
+.metanav_hr {
+    margin-left: 16px;
+    margin-bottom: 0px;
+}
+
 #meta_hr {
     height: 100%;
 }
@@ -33,6 +38,7 @@ body {
 #intro_hr {
     padding-top: 5px;
     margin-left: -12px;
+    margin-bottom: -20px;
 }
 
 #number_hr {
@@ -42,6 +48,7 @@ body {
 }
 
 #submit_btn_hr {
+    margin-top: 10px;
 }
 
 #results_hr {
@@ -75,4 +82,17 @@ body {
     padding-right: 10px;
     color: #666;
     text-align: center;
+}
+
+#login_hr {
+    padding-left: 17px;
+}
+
+.login_btn_hr {
+    margin-top: 5px;
+}
+
+.flash {
+    margin-left: 17px;   
+    padding: 5px;
 }

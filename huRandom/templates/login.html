@@ -1,5 +1,6 @@
 {% extends "layout.html" %}
 {% block body %}
+    <div id="login_hr">
     <h2>Login</h2>
     {% if error %}<p class=error><strong>Error:</strong> {{ error }}{% endif %}
     <form action="{{ url_for('login') }}" method=post>
@@ -8,7 +9,8 @@
             <dd><input type=text name=username>
             <dt>Password:
             <dd><input type=password name=password>
-            <dd><input type=submit value=login>
+            <dd><button class="btn btn-default login_btn_hr" type="submit" value="login">Submit</button>
         </dl>
+    </div>
     </form>
 {% endblock %}
