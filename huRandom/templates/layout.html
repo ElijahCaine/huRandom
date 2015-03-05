@@ -2,40 +2,62 @@
 <html lang="en">
 <head>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
-    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 </head>
 <div class=page>
-    <div id="meta_hr">
-        <div id="main_hr">
+    <div id="main_hr">
 
-            <div id="header_hr">
-                <a href="{{ url_for('add_entry_page') }}"><h1>HuRandom</h1></a>
-                <h5 id="top_hr"> A project by Elijah Caine about 'random' numbers </h5>
-            </div>
-
-            <div id="intro_hr">
-                <blockquote>
-                    HuRandom is a project developed by Elijah Caine to study the human
-                    mind's ability to generate and comprehend 'random' numbers.
-                <blockquote>
-            </div>
+        <div id="header_hr">
+            <a href="{{ url_for('add_entry_page') }}"><h1>HuRandom*</h1></a>
+            <h5 id="top_hr">A project by Elijah Caine about 'random' numbers</h5>
+        </div>
+        
+            <blockquote id="intro_hr">
+                HuRandom is a project developed by Elijah Caine to study the
+                human mind's ability to generate and comprehend 'random' numbers.
+            </blockquote>
 
 
-            {% block body %}{% endblock %}
+        {% block body %}{% endblock %}
 
 
-            <div class="metanav_hr">
+        <div class="metanav_hr">
+                <a class="btn btn-warning btn-xs" href="https://github.com/ElijahCaine/huRandom/issues">*BETA</a>
             {% if not session.logged_in %}
-                <a href="{{ url_for('login') }}" class="btn btn-default">Admin Login</a>
+                <a href="{{ url_for('login') }}" class="btn btn-default btn-xs">Admin Login</a>
             {% else %}
-                <a href="{{ url_for('logout') }}" class="btn btn-default">logout</a>
+                <a href="{{ url_for('admin_page') }}" class="btn btn-default btn-xs">admin</a>
+                <a href="{{ url_for('logout') }}" class="btn btn-default btn-xs">logout</a>
             {% endif %}
-            </div>
             {% for message in get_flashed_messages() %}
-                <div class="flash">{{ message }}</div>
+                <button class="flash btn btn-default btn-xs">{{ message }}</div>
             {% endfor %}
+        </div>
 
-        <div>
-    <div>
+
+        </div>
 </div>
+<div id="footer_hr">
+    <p>HuRandom is made with 
+        <a href="https://github.com/ElijahCaine/huRandom"><3</a>,
+        <a href="http://flask.pocoo.org/">Flask</a>,
+        <a href="http://pygal.org/">Pugal</a>, and
+        <a href="http://getbootstrap.com/">Bootstrap</a> by  
+        <a href="http://elijahcaine.me">Elijah Caine</a>.
+    </p>
+    <p>
+        <a href="https://github.com/ElijahCaine/huRandom">
+            All HuRandom code is licensed under the MIT license.
+        </a>
+
+    </p>
+    <p>All anonymous data is available under 
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>
+        ; for more info read the 
+        <a href="{{ url_for('about_page') }}">
+            About Page.
+        </a>
+    <p> 
+<span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Dataset" property="dct:title" rel="dct:type">HuRandom Data</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://hurandom.elijahcaine.me/data" property="cc:attributionName" rel="cc:attributionURL">Elijah Caine</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
+</div>
+

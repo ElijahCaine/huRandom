@@ -1,10 +1,23 @@
 {% extends "layout.html" %}
 {% block body %}
-    <ul class=entries>
-    {% for entries in entries %}
-        <li> {{ entries.text|safe }}
-    {% else %}
-        <li><em>The database is empty!</em>
-    {% endfor %}
-    </ul>
+
+    <div id="content_hr">
+        <div id=chart_hr>
+            {{ chart|safe }} 
+        </div>
+
+        <br>
+
+        <div id="download_prompt_hr">
+            <blockquote>
+                <p>Download the Data:</p>
+            </blockquote>
+        </div>
+
+        <div id="download_hr">
+            <button href="" type="button" class="btn btn-success btn-block">hr_data.csv</button>
+            <button href="" type="button" class="btn btn-info btn-block">hr_data.xml</button>
+        </div>
+
+
 {% endblock %}

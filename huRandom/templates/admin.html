@@ -1,6 +1,28 @@
 {% extends "layout.html" %}
 {% block body %}
 
-<h3> THIS IS ADMIN INTERFACE LAND WEEEEEE </h3>
+<div id="admin_hr">
+    <h3> ADMIN'S ONLY CLUB </h3>
+
+    <br>
+
+    <a href="{{ url_for('add_entry_page') }}" class="btn btn-default" type="button">Main</a>
+    <a href="{{ url_for('goto_data') }}" class="btn btn-default" type="button">Data</a>
+    <a href="{{ url_for('admin_page') }}" class="btn btn-default" type="button">CSV</a>
+
+    <br>
+    <br>
+
+    <p> If you are not an admin you should gtfo! That said I'm kinda impressed
+        you got in. Like... I'm not a security buff but I wasn't like... giving
+        out the admin interface passwords. Here's a gif for all your hard work.
+    </p>
+
+    <br>
+
+    <img src="http://gifs.elijahcaine.me/bemo.gif"></img>
+
+</div>
+    <br>
 
 {% endblock %}

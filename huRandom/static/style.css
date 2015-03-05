@@ -3,23 +3,25 @@
 
 body {
     background-color: #111;
-    height: 100%;
+    height: 80%;
 }
 
 .metanav_hr {
-    margin-left: 16px;
-    margin-bottom: 0px;
-    padding-top: 5px;
-}
-
-#meta_hr {
-    height: 100%;
+    margin-top: 5px;
+    text-align: right;
 }
 
 #header_hr {
-    color: #FFF;
     background-color: #2E6DA4;
     padding: 5px;
+}
+
+h1 {
+    color: #FFF;
+}
+
+a:hover {
+    color: #CCC;
 }
 
 #main_hr {
@@ -39,7 +41,7 @@ body {
 #intro_hr {
     padding-top: 5px;
     margin-left: -12px;
-    margin-bottom: -20px;
+    padding-bottom: -50px;
 }
 
 #number_hr {
@@ -67,7 +69,7 @@ body {
 }
 
 #download_prompt_hr {
-    margin: -30px;
+    margin-left: -30px;
 }
 
 #download_hr {
@@ -83,6 +85,8 @@ body {
     padding-right: 10px;
     color: #666;
     text-align: center;
+    line-height: 50%;
+    height: 20%;
 }
 
 #login_hr {
@@ -93,15 +97,44 @@ body {
     margin-top: 5px;
 }
 
-.flash {
-    margin-left: 17px;   
-    padding: 5px;
-}
-
 a {
     color: #FFF;
+    text-decoration: none;
 }
 
 #top_hr {
     color: #EEE;
 }
+
+#chart_hr {
+    margin: 10px;
+}
+
+.flash {
+    text-align: right;
+}
+
+#admin_hr {
+    text-align: center;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+#admin_content_hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+   
+}
+
+#login_hr {
+    text-align: center;    
+}
+
+.page {
+    height: 100%;
+}
+
+.flash {
+    text-align: left;
+}
+
