@@ -9,17 +9,21 @@ RUN pacman -Syyuu --noconfirm
 RUN pacman-db-upgrade
 
 # Install system dependencies
-RUN pacman --noconfirm -S python python-pip gcc
+RUN pacman --noconfirm -S python2 python2-pip python2-setuptools gcc sqlite
+
+# Set environment variables
+ENV HURANDOM_SETTINGS=/huRandom/huRandom/config.py
 
 # Install python requirements
 WORKDIR /huRandom
 COPY ./requirements.txt /huRandom/requirements.txt
 
-RUN pip install -r requirements.txt
+RUN pip2.7 install -r requirements.txt
 
 # Copy the version of the app in the host's current directory into the
 # container
 COPY . /huRandom
+RUN ln /usr/bin/python2.7 /usr/bin/python
 
 # Command to run
 CMD ["python", "huRandom/huRandom.py"]

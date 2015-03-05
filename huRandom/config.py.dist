@@ -1,9 +1,8 @@
 # cp /path/to/config.py.dist /path/to/config.py
 # edit config.py
 # export HURANDOM_SETTINGS=/path/to/config.py
-# THESE ARE TESTING SETTINGS AND SHOULD BE CHANGED FOR PRODUCTIOn
-DATABASE = '/tmp/hurandom.db'       # location of the database
-DEBUG = True                        # False for production
-SECRET_KEY = 'asdf'                 # Super secret key
-USERNAME = 'admin'                  # admin username
-PASSWORD = 'password'               # admin password
+DATABASE = '/tmp/huRandom.db'
+DEBUG = True
+SECRET_KEY = 'asdf'
+USERNAME = 'admin'
+PASSWORD = 'password'

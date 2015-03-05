@@ -138,7 +138,7 @@ def export_csv(data):
     """
     Exports data into newline delimited csv file
     """
-    csvfile = 'data/hr_data.csv'
+    csvfile = 'huRandom/data/hr_data.csv'
     with open(csvfile, "w") as output:
         writer = csv.writer(output, lineterminator='\n')
         for val in data:

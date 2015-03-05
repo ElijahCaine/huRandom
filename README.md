@@ -4,23 +4,23 @@ HuRandom
 
 Installation
 ------------
-HuRandom is developed and tested on Arch Linux with `python --version` 3.4.2,
-`flask.__version__` 0.10.1. Your mileage may vary.
+HuRandom is developed and tested on Arch Linux with `python --version` 3.4.2 or
+2.7.9, and `flask.__version__` 0.10.1. Your mileage may vary.
 
 Status
 ------
-Doesn't work :P
+Mostly works!
 
 Development with docker
 -----------------------
 To build an image, run:
 ```shell
-$ docker build -t ElijahCaine/huRandom .
+$ docker build -t elijahcaine/hurandom .
 ```
 
 To run the container, use:
 ```shell
-$ docker run -p 5000:5000 ElijahCaine/hurandom
+$ docker run -p 5000:5000 elijahcaine/hurandom
 ```
 
 
@@ -35,7 +35,7 @@ below.'
 More Information
 ----------------
 If you would like to know more about the project or contact the author of
-HuRandom ping pop` on irc.freenode.net or email elijahcainemv@gmail.
+HuRandom ping pop on irc.freenode.net or email elijahcainemv@gmail.
 
 HuRandom is licenced under the MIT Licence (MIT)
 Copyright © 2015 Elijah Caine McDade-Voigt
