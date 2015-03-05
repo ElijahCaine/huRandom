@@ -4,6 +4,7 @@
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
     </head>
     <body>
         <div id="meta_hr">
@@ -19,22 +20,24 @@
                         mind's ability to generate and comprehend 'random' numbers.</p>
                     </blockquote>
                 </div>
-
                 <div id="content_hr">
-                    <div class="row">
+                    <h2 id="results_hr">
+                        The Results
+                    </h2>
+                    <figure  id="data_svg_hr">
+                        <embed type="image/svg+xml" src="foo.svg"/>
+                    </figure>
 
-                        <div class="col-md-7" id="number_hr">
-                            <form>
-                                Enter a Number:<br>
-                                <input type="text" name="num_hur" class="form-control"><br>
-                                <input type="submit" value="submit" class="btn btn-primary" id="submit_btn_hr">
-                            </form>
-                        </div>
-
-                        <div class="col-md-5" id="data_hr">
-                            <br>
-                            <button type="button" class="btn btn-danger"> No Thanks. Just the Data Please.</button>
-                        </div>
+                    <br>
+                    <br>
+                    <div id="download_prompt_hr">
+                        <blockquote>
+                            <p> Download the Data: </p>
+                        </blockquote>
+                    </div>
+                    <div id="download_hr">
+                        <button type="button" class="btn btn-success btn-block"> hr_data.csv </button>
+                        <button type="button" class="btn btn-info btn-block"> hr_data.xml </button>
                     </div>
                 </div>
             </div>
