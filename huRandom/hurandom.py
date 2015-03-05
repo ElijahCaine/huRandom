@@ -5,6 +5,10 @@ from contextlib import closing
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
 
+import csv
+
+import pygal
+
 
 app = Flask(__name__)
 app.config.from_envvar('HURANDOM_SETTINGS', silent=True)
@@ -15,7 +19,6 @@ def connect_db():
     Connect to a given DB defined in conf.py and exported to env vars
     """
     return sqlite3.connect(app.config['DATABASE'])
-
 def init_db():
     """
     Initializes database. `$ python`, `>from flask import init_db`, `>init_db()`
@@ -64,6 +67,8 @@ def add_entry():
     g.db.execute('insert into entries (text) values (?)',
                  [request.form['user_input']])
     g.db.commit()
+    export_csv(fetch_entries())
+    graph_data(fetch_entries())
     flash('New entry successfully added')
     return redirect(url_for('goto_data'))
 
@@ -107,6 +112,28 @@ def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
     return redirect(url_for('add_entry_page'))
+
+def export_csv(data):
+    """
+    Exports data into newline delimited csv file
+    """
+    csvfile = 'data/hurandom-raw.csv'
+    with open(csvfile, "w") as output:
+        writer = csv.writer(output, lineterminator='\n')
+        for val in data:
+            writer.writerow([val]) 
+
+def graph_data(data):
+    """
+    Generates histogram of data for user
+    """
+    chart = pygal.Bar()
+    chart.title = '`Random` Numbers'
+    #chart.x_labels = map(str, range(2002, 2013))
+    chart.add('Data', data)
+    chart.render()
+    chart.render_to_file('data/chart.svg')  
+    
 
 if __name__ == '__main__':
     app.run()
