@@ -1,3 +1,5 @@
+from os import environ
+
 import sqlite3
 
 from contextlib import closing
@@ -162,4 +164,4 @@ def about_page():
 init_db()
 
 if __name__ == '__main__':
-    app.run()
+    app.run(host=environ.get('APP_IP'))
