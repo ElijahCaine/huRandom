@@ -9,6 +9,8 @@ body {
 .metanav_hr {
     margin-top: 5px;
     text-align: right;
+    padding-right: 5px;
+    margin-bottom: -20px;
 }
 
 #header_hr {
@@ -138,3 +140,6 @@ a {
     text-align: left;
 }
 
+#msg_hr {
+    padding-right: 5px;
+}

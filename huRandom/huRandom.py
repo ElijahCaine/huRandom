@@ -1,5 +1,7 @@
 from os import environ
 
+import sys
+
 import sqlite3
 
 from contextlib import closing
@@ -30,6 +32,7 @@ def init_db():
         with app.open_resource('schema.sql', mode='r') as f:
             db.cursor().executescript(f.read())
         db.commit()
+    import_data()
 
 @app.before_request
 def before_request():
@@ -52,21 +55,7 @@ def fetch_entries():
     Fetches entries from database and returns dict.
     """
     cur = g.db.execute('select text from entries order by id desc')
-    #entries = list(float(row[0]) for row in cur.fetchall())
-    entries = []
-    for row in cur.fetchall():
-        try:
-            new = float(row[0])
-        except:
-            pass
-        try:
-            new = int(row[0])
-        except:
-            new = None
-        if new is not None:
-            entries.append(new)
-
-
+    entries = [check_num(row[0]) for rows in cur.fetchall()] 
     entries.sort()
     return entries
 
@@ -82,12 +71,18 @@ def add_entry():
     """
     Adds entry to database
     """
+    try:
+        float(request.form['user_input'])
+    except:
+        new = None
+        flash('\'' + request.form['user_input'] + '\' isn\'t a real number!')
+        return redirect(url_for('add_entry_page'))
+
     g.db.execute('insert into entries (text) values (?)',
                  [request.form['user_input']])
     g.db.commit()
-    export_csv(fetch_entries())
     graph_data(fetch_entries())
-    flash('New entry successfully added')
+    flash('\'' + request.form['user_input'] + '\' successfully added. Thank you!')
     return redirect(url_for('goto_data'))
 
 @app.route('/data')
@@ -133,17 +128,43 @@ def logout():
     flash('You were logged out')
     return redirect(url_for('add_entry_page'))
 
-@app.route('/csv')
-def export_csv(data):
+@app.route('/export')
+def export_data(data):
     """
-    Exports data into newline delimited csv file
+    Exports data into newline delimited csv file.
     """
-    csvfile = 'huRandom/data/hr_data.csv'
-    with open(csvfile, "w") as output:
+    file_path = 'huRandom/data/hr_data.csv'
+    with open(file_path, "w") as output:
         writer = csv.writer(output, lineterminator='\n')
         for val in data:
             writer.writerow([val]) 
     return redirect(url_for('goto_data'))
+
+def import_data():
+    """
+    Imports a given csv file into the database.
+    """
+    file_path = 'huRandom/data/hr_data.csv'
+    with open(file_path) as f: data_list = [check_num(line) for line in f]
+
+    print("Imported data: " + str(data_list))
+
+    for i in range(len(data_list)):
+        g.db.execute('insert into entries (text) values (?)',[data_list[i]])
+    g.db.commit()
+    return data_list
+
+def check_num(val):
+    """
+    Checks if input is float or integer
+    returns approprately typed value
+    """
+    if float(val) == round(float(val)):
+        return int(val)
+    elif float(val) != round(float(val)):
+        return float(val)
+    else:
+        return None
 
 def graph_data(data):
     """
@@ -157,6 +178,10 @@ def graph_data(data):
     chart = chart.render(is_unicode=True)
     return chart
 
+def compile_data(data):
+
+    return
+    
 @app.route('/about')
 def about_page():
     return render_template('about.html')
