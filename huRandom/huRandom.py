@@ -32,7 +32,7 @@ def init_db():
         with app.open_resource('schema.sql', mode='r') as f:
             db.cursor().executescript(f.read())
         db.commit()
-    import_data()
+    import_data(import_data_list())
 
 @app.before_request
 def before_request():
@@ -55,8 +55,9 @@ def fetch_entries():
     Fetches entries from database and returns dict.
     """
     cur = g.db.execute('select text from entries order by id desc')
-    entries = [check_num(row[0]) for rows in cur.fetchall()] 
+    entries = [check_num(rows[0]) for rows in cur.fetchall()] 
     entries.sort()
+    print("DB Entries" + str(entries))
     return entries
 
 @app.route('/')
@@ -78,6 +79,8 @@ def add_entry():
         flash('\'' + request.form['user_input'] + '\' isn\'t a real number!')
         return redirect(url_for('add_entry_page'))
 
+    print(import_data_list())
+
     g.db.execute('insert into entries (text) values (?)',
                  [request.form['user_input']])
     g.db.commit()
@@ -92,7 +95,6 @@ def goto_data():
     """
     nums = fetch_entries()
     chart = graph_data(fetch_entries())
-    print(nums)
     return render_template('data.html', entries=nums, chart=chart)
 
 @app.route('/admin')
@@ -140,7 +142,7 @@ def export_data(data):
             writer.writerow([val]) 
     return redirect(url_for('goto_data'))
 
-def import_data():
+def import_data_list():
     """
     Imports a given csv file into the database.
     """
@@ -149,21 +151,27 @@ def import_data():
 
     print("Imported data: " + str(data_list))
 
-    for i in range(len(data_list)):
-        g.db.execute('insert into entries (text) values (?)',[data_list[i]])
-    g.db.commit()
     return data_list
+
+def import_data(data):
+    cur = g.db.cursor()
+
+    cur.executemany('insert into entries (text) values (?)',
+                    str(import_data_list))
+    cur.commit()
+    cur.close()
 
 def check_num(val):
     """
     Checks if input is float or integer
     returns approprately typed value
     """
-    if float(val) == round(float(val)):
-        return int(val)
-    elif float(val) != round(float(val)):
-        return float(val)
-    else:
+    try:
+        if float(val) == round(float(val)):
+            return int(val)
+        elif float(val) != round(float(val)):
+            return float(val)
+    except:
         return None
 
 def graph_data(data):
@@ -181,7 +189,7 @@ def graph_data(data):
 def compile_data(data):
 
     return
-    
+
 @app.route('/about')
 def about_page():
     return render_template('about.html')
