@@ -32,7 +32,6 @@ def init_db():
         with app.open_resource('schema.sql', mode='r') as f:
             db.cursor().executescript(f.read())
         db.commit()
-    import_data(import_data_list())
 
 @app.before_request
 def before_request():
@@ -79,12 +78,9 @@ def add_entry():
         flash('\'' + request.form['user_input'] + '\' isn\'t a real number!')
         return redirect(url_for('add_entry_page'))
 
-    print(import_data_list())
-
     g.db.execute('insert into entries (text) values (?)',
                  [request.form['user_input']])
     g.db.commit()
-    graph_data(fetch_entries())
     flash('\'' + request.form['user_input'] + '\' successfully added. Thank you!')
     return redirect(url_for('goto_data'))
 
@@ -94,7 +90,8 @@ def goto_data():
     Links user to data page.
     """
     nums = fetch_entries()
-    chart = graph_data(fetch_entries())
+    compile_data(nums)
+    chart = graph_data(nums)
     return render_template('data.html', entries=nums, chart=chart)
 
 @app.route('/admin')
@@ -142,25 +139,6 @@ def export_data(data):
             writer.writerow([val]) 
     return redirect(url_for('goto_data'))
 
-def import_data_list():
-    """
-    Imports a given csv file into the database.
-    """
-    file_path = 'huRandom/data/hr_data.csv'
-    with open(file_path) as f: data_list = [check_num(line) for line in f]
-
-    print("Imported data: " + str(data_list))
-
-    return data_list
-
-def import_data(data):
-    cur = g.db.cursor()
-
-    cur.executemany('insert into entries (text) values (?)',
-                    str(import_data_list))
-    cur.commit()
-    cur.close()
-
 def check_num(val):
     """
     Checks if input is float or integer
@@ -178,7 +156,12 @@ def graph_data(data):
     """
     Generates histogram of data for user
     """
-    chart = pygal.Bar(fill=True, interpolate='cubic', style=CleanStyle, no_data_text='Not enough data to science :(', title_font_size=40, no_data_font_size=30)
+    chart = pygal.Bar(fill=True,
+                      interpolate='cubic',
+                      style=CleanStyle,
+                      no_data_text='Not enough data to science :(',
+                      title_font_size=40,
+                      no_data_font_size=30)
     chart.title = '`Random` Numbers'
     #chart.x_labels = map(str, range(min(data), max(data)))
     chart.add('Data', data)
@@ -187,14 +170,41 @@ def graph_data(data):
     return chart
 
 def compile_data(data):
+    if len(data) > 10:
+        bin_num = 10
+        spread = max(data) - min(data)
+        bin_range = int(spread/bin_num)
+        output = [0 for i in range(bin_num)]
+        axis = ['0' for i in range(bin_num)]
+
+        print("Spread: " + str(spread))
+        print("Number of Bins: " + str(bin_num))
+        print("Bin Range: " + str(bin_range))
+        print("Number of elements: " + str(len(data)))
+        print("Output list: " + str(output))
+        print("X-Axis labe: " + str(axis))
+
+        for i in range(bin_num):
+            axis[i] = str(bin_range*i)
+            for j in range(bin_range*i, len(data)):
+                print("i: " + str(i) + ",j: " + str(j))
+                if (bin_range*i) < data[j] and data[j] < (bin_range*(i+1)):
+                    output[i] += 1
+                    print("output[i]: " + str(output[i]))
+                    print("bin_range*i: " + str(bin_range*i))
+                    print("bin_range*(i+1): " + str(bin_range*(i+1)))
+                else:
+                    break
+            axis[i] += ("-" +  str(bin_range*(i+1)))
+
+        print("Output list: " + str(output))
+        print("X-Axis labe: " + str(axis))
 
     return
 
 @app.route('/about')
 def about_page():
     return render_template('about.html')
-
-init_db()
 
 if __name__ == '__main__':
     app.run(host=environ.get('APP_IP'))
