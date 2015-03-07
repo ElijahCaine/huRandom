@@ -2,24 +2,32 @@
 
 
 body {
-    background-color: #111;
+    background-color: #333;
     height: 80%;
 }
 
 .metanav_hr {
-    margin-top: 5px;
+    margin-top: 30px;
     text-align: right;
     padding-right: 5px;
-    margin-bottom: -20px;
+    margin-bottom: -15px;
+    text-align: center;
 }
 
 #header_hr {
-    background-color: #2E6DA4;
+    background-color: #0EC2D2;
     padding: 5px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 h1 {
-    color: #FFF;
+    font-size: 120px;
+}
+
+h5 {
+    font-size: 20px;
+    text-align: right;
 }
 
 a:hover {
@@ -27,7 +35,7 @@ a:hover {
 }
 
 #main_hr {
-    background-color: #EEE;
+    background-color: #FFF;
     margin-left: auto;
     margin-right: auto;
     width: 700px;
@@ -47,6 +55,9 @@ a:hover {
 }
 
 #number_hr {
+    margin-top: 60px;
+    margin-bottom: 80px;
+    text-align: center;
 }
 
 #data_hr {
@@ -71,21 +82,24 @@ a:hover {
 }
 
 #download_prompt_hr {
-    margin-left: -30px;
+    margin-top: 15px;
+    text-align: center;
+    font-size: 35px;
 }
 
 #download_hr {
     width: 20%;
     margin-left: auto;
     margin-right: auto;
+
 }
 
 #footer_hr {
-    margin-top: 10px;
+    margin-top: 30px;
     padding-bottom: 5px;
     padding-left: 10px;
     padding-right: 10px;
-    color: #666;
+    color: #BBB;
     text-align: center;
     line-height: 50%;
     height: 20%;
@@ -142,4 +156,28 @@ a {
 
 #msg_hr {
     padding-right: 5px;
+}
+
+#desc_hr {
+    padding-top: 40px;
+    padding-bottom: 30px;
+    padding-left: 20px;
+    font-size: 20px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+dt {
+    font-size: 20px;
+    text-align: center;
+}
+
+#thanks_hr {
+    text-align: center;
+    margin-top: -30px;
+    font-size: 30px;
+}
+
+#data_info_hr {
+    margin-bottom: 45px;
 }

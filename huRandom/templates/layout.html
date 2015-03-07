@@ -9,20 +9,20 @@
 
         <div id="header_hr">
             <a href="{{ url_for('add_entry_page') }}"><h1>HuRandom*</h1></a>
-            <h5 id="top_hr">A project by Elijah Caine about 'random' numbers</h5>
+            <em><h5 id="top_hr">A project by Elijah Caine about 'random' numbers</h5></em>
         </div>
-        
-            <blockquote id="intro_hr">
-                HuRandom is a project developed by Elijah Caine to study the
-                human mind's ability to generate and comprehend 'random' numbers.
-            </blockquote>
+        <p id="desc_hr">
+            HuRandom is a project developed by Elijah Caine to study the
+            human mind's ability to generate and comprehend 'random' numbers.
+        </p>
 
 
         {% block body %}{% endblock %}
 
 
         <div class="metanav_hr">
-                <a class="btn btn-warning btn-xs" href="https://github.com/ElijahCaine/huRandom/issues">*BETA</a>
+                <a class="btn btn-warning btn-xs" href="https://github.com/ElijahCaine/huRandom/issues">*ISSUES</a>
+                <a class="btn btn-info btn-xs" href="{{ url_for('about_page') }}">about</a>
             {% if not session.logged_in %}
                 <a href="{{ url_for('login') }}" class="btn btn-default btn-xs">Admin Login</a>
             {% else %}
@@ -36,6 +36,9 @@
 
     </div>
 </div>
+<footer class=footer>
+<div class=container>
+
 <div id="footer_hr">
     <p>HuRandom is made with 
         <a href="https://github.com/ElijahCaine/huRandom"><3</a>,
@@ -60,3 +63,5 @@
 <span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Dataset" property="dct:title" rel="dct:type">HuRandom Data</span> by <a xmlns:cc="http://creativecommons.org/ns#" href="http://huRandom.elijahcaine.me/data" property="cc:attributionName" rel="cc:attributionURL">Elijah Caine</a> is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons Attribution-ShareAlike 4.0 International License</a>.
 </div>
 
+</div>
+</footer>

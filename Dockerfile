@@ -25,5 +25,8 @@ RUN pip2.7 install -r requirements.txt
 COPY . /huRandom
 RUN ln /usr/bin/python2.7 /usr/bin/python
 
+# Initialize database
+RUN python /huRandom/init.py
+
 # Command to run
 CMD ["python", "huRandom/huRandom.py"]

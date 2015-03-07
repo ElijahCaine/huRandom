@@ -2,20 +2,30 @@
 {% block body %}
 
     <div id="content_hr">
+
+        <div id="thanks_hr">
+            {% for message in get_flashed_messages() %}
+                <em><p id="thanks_hr">{{ message }}. Thank you!</p></em>
+            {% endfor %}
+        </div>
+
         <div id=chart_hr>
             {{ chart|safe }} 
         </div>
 
         <br>
 
+        <p id="data_info_hr">
+            The above graph visualizes the dataset collected thus far. Each bar
+            lists the frequencies of number selection within a given range. 
+        </p>
+
         <div id="download_prompt_hr">
-            <blockquote>
-                <p>Download the Data:</p>
-            </blockquote>
+            <p>Not enough? Download the data:</p>
         </div>
 
         <div id="download_hr">
-            <a href="{{ url_for('static', filename='hr_raw.csv') }}" type="button" class="btn btn-success btn-block">hr_data.csv</a>
+            <a href="{{ url_for('static', filename='hr_raw.csv') }}" type="button" class="btn btn-success btn-block btn-lg">hr_raw.csv</a>
         </div>
 
 

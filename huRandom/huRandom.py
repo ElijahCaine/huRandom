@@ -80,7 +80,7 @@ def add_entry():
                  [request.form['user_input']])
     g.db.commit()
     export_csv()
-    flash('\'' + request.form['user_input'] + '\' successfully added. Thank you!')
+    flash('\'' + request.form['user_input'] + '\' successfully added.')
     return redirect(url_for('goto_data'))
 
 @app.route('/data')
@@ -158,34 +158,46 @@ def graph_data(data):
                       interpolate='cubic',
                       style=CleanStyle,
                       no_data_text='Not enough data to science :(',
-                      title_font_size=40,
+                      title_font_size=30,
+                      show_legend=False,
+                      x_title='Range',
+                      y_title='Frequency',
+                      label_font_size=12.5,
+                      x_label_rotation=30,
+                      title="'Random' Numbers",
+                      x_labels=axis,
                       no_data_font_size=30)
-    chart.title = '`Random` Numbers'
-    chart.x_labels = axis
     chart.add('Data', graph_data)
     chart.render()
     return chart.render(is_unicode=True)
 
 def compile_data(data):
-    if len(data) > 10:
-        bin_num = 10
-        bin_range = int((max(data) - min(data))/bin_num)+1
+    bin_num = 10
+
+    print(data)
+
+    if len(data) > bin_num:
         output = [0 for i in range(bin_num)]
-        axis = ['0' for i in range(bin_num)]
+        axis = ['-' for i in range(bin_num)]
+        bin_range = int((max(data) - min(data))/bin_num)+1
         j_old = 0
 
+        print(bin_range)
         for i in range(bin_num):
-            axis[i] = str(bin_range*i)
+            axis[i] = str((bin_range*i)+min(data))
+            print(i)
             for j in range(j_old, len(data)):
-                if (bin_range*i) < data[j] and data[j] <= (bin_range*(i+1)):
+                print(j)
+                if (bin_range*i)+min(data) < data[j] and data[j] <= (bin_range*(i+1)+min(data)):
                     output[i] += 1
                 else:
                     j_old = j
                     break
-            axis[i] += ("-" +  str(bin_range*(i+1)))
-
-    return (output, axis)
-
+            axis[i] += ("-" +  str(bin_range*(i+1)+min(data)))
+        print(output)
+        return (output, axis)
+    axis = ['-' for i in range(len(data))]
+    return (data, axis)
 
 @app.route('/about')
 def about_page():
