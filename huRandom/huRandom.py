@@ -17,7 +17,6 @@ from pygal.style import CleanStyle
 app = Flask(__name__)
 app.config.from_envvar('HURANDOM_SETTINGS', silent=True)
 
-
 def connect_db():
     """
     Connect to a given DB defined in conf.py and exported to env vars
@@ -56,7 +55,6 @@ def fetch_entries():
     cur = g.db.execute('select text from entries order by id desc')
     entries = [check_num(rows[0]) for rows in cur.fetchall()] 
     entries.sort()
-    print("DB Entries" + str(entries))
     return entries
 
 @app.route('/')
@@ -81,6 +79,7 @@ def add_entry():
     g.db.execute('insert into entries (text) values (?)',
                  [request.form['user_input']])
     g.db.commit()
+    export_csv()
     flash('\'' + request.form['user_input'] + '\' successfully added. Thank you!')
     return redirect(url_for('goto_data'))
 
@@ -89,10 +88,10 @@ def goto_data():
     """
     Links user to data page.
     """
-    nums = fetch_entries()
-    compile_data(nums)
-    chart = graph_data(nums)
-    return render_template('data.html', entries=nums, chart=chart)
+    n = fetch_entries()
+    compile_data(n)
+    chart = graph_data(n)
+    return render_template('data.html', entries=n, chart=chart)
 
 @app.route('/admin')
 def admin_page():
@@ -127,17 +126,15 @@ def logout():
     flash('You were logged out')
     return redirect(url_for('add_entry_page'))
 
-@app.route('/export')
-def export_data(data):
+def export_csv():
     """
     Exports data into newline delimited csv file.
     """
-    file_path = 'huRandom/data/hr_data.csv'
+    file_path = 'huRandom/static/hr_raw.csv'
     with open(file_path, "w") as output:
         writer = csv.writer(output, lineterminator='\n')
-        for val in data:
+        for val in fetch_entries():
             writer.writerow([val]) 
-    return redirect(url_for('goto_data'))
 
 def check_num(val):
     """
@@ -167,29 +164,19 @@ def graph_data(data):
     chart.x_labels = axis
     chart.add('Data', graph_data)
     chart.render()
-    chart = chart.render(is_unicode=True)
-    return chart
+    return chart.render(is_unicode=True)
 
 def compile_data(data):
     if len(data) > 10:
         bin_num = 10
-        spread = max(data) - min(data)
-        bin_range = int(spread/bin_num)+1
+        bin_range = int((max(data) - min(data))/bin_num)+1
         output = [0 for i in range(bin_num)]
         axis = ['0' for i in range(bin_num)]
         j_old = 0
 
-        print("Spread: " + str(spread))
-        print("Number of Bins: " + str(bin_num))
-        print("Bin Range: " + str(bin_range))
-        print("Number of elements: " + str(len(data)))
-        print("Output list: " + str(output))
-        print("X-Axis labe: " + str(axis))
-
         for i in range(bin_num):
             axis[i] = str(bin_range*i)
             for j in range(j_old, len(data)):
-                print("i: " + str(i) + ",j: " + str(j))
                 if (bin_range*i) < data[j] and data[j] <= (bin_range*(i+1)):
                     output[i] += 1
                 else:
@@ -197,10 +184,8 @@ def compile_data(data):
                     break
             axis[i] += ("-" +  str(bin_range*(i+1)))
 
-        print("Output list: " + str(output))
-        print("X-Axis labe: " + str(axis))
-
     return (output, axis)
+
 
 @app.route('/about')
 def about_page():
