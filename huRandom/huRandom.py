@@ -156,6 +156,7 @@ def graph_data(data):
     """
     Generates histogram of data for user
     """
+    graph_data, axis = compile_data(data)
     chart = pygal.Bar(fill=True,
                       interpolate='cubic',
                       style=CleanStyle,
@@ -163,8 +164,8 @@ def graph_data(data):
                       title_font_size=40,
                       no_data_font_size=30)
     chart.title = '`Random` Numbers'
-    #chart.x_labels = map(str, range(min(data), max(data)))
-    chart.add('Data', data)
+    chart.x_labels = axis
+    chart.add('Data', graph_data)
     chart.render()
     chart = chart.render(is_unicode=True)
     return chart
@@ -173,9 +174,10 @@ def compile_data(data):
     if len(data) > 10:
         bin_num = 10
         spread = max(data) - min(data)
-        bin_range = int(spread/bin_num)
+        bin_range = int(spread/bin_num)+1
         output = [0 for i in range(bin_num)]
         axis = ['0' for i in range(bin_num)]
+        j_old = 0
 
         print("Spread: " + str(spread))
         print("Number of Bins: " + str(bin_num))
@@ -186,21 +188,19 @@ def compile_data(data):
 
         for i in range(bin_num):
             axis[i] = str(bin_range*i)
-            for j in range(bin_range*i, len(data)):
+            for j in range(j_old, len(data)):
                 print("i: " + str(i) + ",j: " + str(j))
-                if (bin_range*i) < data[j] and data[j] < (bin_range*(i+1)):
+                if (bin_range*i) < data[j] and data[j] <= (bin_range*(i+1)):
                     output[i] += 1
-                    print("output[i]: " + str(output[i]))
-                    print("bin_range*i: " + str(bin_range*i))
-                    print("bin_range*(i+1): " + str(bin_range*(i+1)))
                 else:
+                    j_old = j
                     break
             axis[i] += ("-" +  str(bin_range*(i+1)))
 
         print("Output list: " + str(output))
         print("X-Axis labe: " + str(axis))
 
-    return
+    return (output, axis)
 
 @app.route('/about')
 def about_page():
