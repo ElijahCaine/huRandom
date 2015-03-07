@@ -26,7 +26,7 @@ COPY . /huRandom
 RUN ln /usr/bin/python2.7 /usr/bin/python
 
 # Initialize database
-RUN python /huRandom/init.py
+RUN python /huRandom/huRandom/init.py
 
 # Command to run
 CMD ["python", "huRandom/huRandom.py"]
