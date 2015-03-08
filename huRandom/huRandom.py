@@ -173,31 +173,31 @@ def graph_data(data):
 
 def compile_data(data):
     bin_num = 10
+    data_true = data
+    j_old = min(data)
+    bin_range = int((max(data) - min(data))/bin_num)+1
 
-    print(data)
+    print(len(data))
 
     if len(data) > bin_num:
+        if min(data) <= 0:
+            data = [data_true[i]+(abs(min(data)))+1 for i in range(len(data_true))]
         output = [0 for i in range(bin_num)]
         axis = ['-' for i in range(bin_num)]
-        bin_range = int((max(data) - min(data))/bin_num)+1
-        j_old = 0
 
-        print(bin_range)
         for i in range(bin_num):
-            axis[i] = str((bin_range*i)+min(data))
-            print(i)
+            axis[i] = str((bin_range*i)+min(data_true))
             for j in range(j_old, len(data)):
-                print(j)
                 if (bin_range*i)+min(data) < data[j] and data[j] <= (bin_range*(i+1)+min(data)):
                     output[i] += 1
                 else:
                     j_old = j
                     break
-            axis[i] += ("-" +  str(bin_range*(i+1)+min(data)))
-        print(output)
+            axis[i] += (" to " +  str(bin_range*(i+1)+min(data_true)))
         return (output, axis)
-    axis = ['-' for i in range(len(data))]
-    return (data, axis)
+    axis = [str(data[i]) for i in range(len(data))]
+    output = [1 for i in range(len(data))]
+    return (output, axis)
 
 @app.route('/about')
 def about_page():
