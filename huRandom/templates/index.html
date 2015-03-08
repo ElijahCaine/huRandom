@@ -14,15 +14,14 @@ number you can think of!
             <form class="form-inline row" action="{{ url_for('add_entry') }}" method=post class=add-entry>
                     <div class="form-group">
                     <input type="text" name="user_input" class="col-md-4 form-control input-lg" placeholder="Enter a Random Number">
-                    <input type="submit" value="Submit" class="btn btn-primary btn-lg"> 
-                </div>
+                    <input type="submit" value="Submit" class="btn btn-primary btn-lg" id="input_hr"> 
+                    </div>
             </form>
-            <div class="row just_data_hr">
-                <p>
-                <a href="{{ url_for('goto_data') }}" type=button class="btn btn-danger col-md-6 btn-lg">See the Data</a>
-                </p>
+            <div class="row" id="just_data_hr">
+                <a href="{{ url_for('goto_data') }}" type=button class="btn btn-warning col-md-6 btn-lg">See the Data</a>
             </div>
         </div>
+
     <p id="data_info_hr">
         HuRandom is an <a href="{{ url_for('about_page') }}"
 class="main_link_hr">Open Project</a> created with the purpose of exploring our

@@ -89,9 +89,9 @@ def goto_data():
     Links user to data page.
     """
     n = fetch_entries()
-    compile_data(n)
     chart = graph_data(n)
-    return render_template('data.html', entries=n, chart=chart)
+    avg = sum(n)/len(n)
+    return render_template('data.html', entries=n, chart=chart, avg=avg)
 
 @app.route('/admin')
 def admin_page():
@@ -153,11 +153,11 @@ def graph_data(data):
     """
     Generates histogram of data for user
     """
-    graph_data, axis = compile_data(data)
+    graph_data, axis , n= compile_data(data)
     chart = pygal.Bar(fill=True,
                       interpolate='cubic',
                       style=CleanStyle,
-                      no_data_text='Not enough data to science :(',
+                      no_data_text=str(n) + ' more entries needed for graphing.',
                       title_font_size=30,
                       show_legend=False,
                       x_title='Range',
@@ -172,32 +172,29 @@ def graph_data(data):
     return chart.render(is_unicode=True)
 
 def compile_data(data):
-    bin_num = 15
-    data_true = data
-    j_old = min(data)
-    bin_range = int((max(data) - min(data))/bin_num)+1
+    bin_num = 20
+    bin_range = int((max(data) - min(data)) / bin_num)+1
+    output = [0 for i in range(bin_num)]
+    axis = ['-' for i in range(bin_num)]
+    n = bin_num - len(data)
 
-    print(len(data))
+    print('Number of Bins: ' + str(bin_num) +\
+          ' | range for each bin: ' + str(bin_range) +\
+          ' | min value: ' + str(min(data)) +\
+          ' | max value: ' + str(max(data)) +\
+          ' | number of values: ' + str(len(data)) +\
+          ' | list of data: ' + str(data))
 
-    if len(data) > bin_num:
-        if min(data) <= 0:
-            data = [data_true[i]+(abs(min(data)))+1 for i in range(len(data_true))]
-        output = [0 for i in range(bin_num)]
-        axis = ['-' for i in range(bin_num)]
-
+    if len(data) >= bin_num:
         for i in range(bin_num):
-            axis[i] = str((bin_range*i)+min(data_true))
-            for j in range(j_old, len(data)):
-                if (bin_range*i)+min(data) < data[j] and data[j] <= (bin_range*(i+1)+min(data)):
+            axis[i] = str(bin_range*i+min(data))
+            for j in range(len(data)):
+                if bin_range*i+min(data) <= data[j] and data[j] < bin_range*(i+1)+min(data):
                     output[i] += 1
-                else:
-                    j_old = j
-                    break
-            axis[i] += (" to " +  str(bin_range*(i+1)+min(data_true)))
-        return (output, axis)
-    axis = [str(data[i]) for i in range(len(data))]
-    output = [1 for i in range(len(data))]
-    return (output, axis)
+            axis[i] += " to " + str(bin_range*(i+1)+min(data))
+
+    print(output)
+    return(output, axis, n)
 
 @app.route('/about')
 def about_page():

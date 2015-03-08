@@ -67,8 +67,10 @@ a:hover {
     font-family: Verdana, Geneva, sans-serif;
 }
 
-.input_hr {
-    text-align: center;
+#input_hr {
+    margin-right: 5px;
+    margin-left: 5px;
+    margin-bottom: 1.5em;
 }
 
 #submit_btn_hr {
@@ -208,8 +210,9 @@ dt {
 .about_subtitle_hr {
 }
 
-.just_data_hr {
+#just_data_hr {
     margin-top: 10px;
+    margin-left: 30%;
 }
 
 .alert_hr {
