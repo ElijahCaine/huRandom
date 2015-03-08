@@ -4,6 +4,9 @@
 body {
     background-color: #333;
     height: 80%;
+    font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+    font-weight: 100;
+    color: #666;
 }
 
 .metanav_hr {
@@ -22,16 +25,18 @@ body {
 }
 
 h1 {
-    font-size: 120px;
+    font-size: 110px;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 h5 {
     font-size: 20px;
     text-align: right;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }
 
 a:hover {
-    color: #CCC;
+    color: #666;
 }
 
 #main_hr {
@@ -45,7 +50,10 @@ a:hover {
 
 #content_hr {
     padding-left: 17px;
+    padding-right: 17px;
     min-height: 100%;
+    padding-top: 10px;
+    padding-bottom: 40px;
 }
 
 #intro_hr {
@@ -55,9 +63,11 @@ a:hover {
 }
 
 #number_hr {
-    margin-top: 60px;
-    margin-bottom: 80px;
+    color: #111;
+    margin-top: 30px;
+    margin-bottom: 30px;
     text-align: center;
+    font-family: Verdana, Geneva, sans-serif;
 }
 
 #data_hr {
@@ -95,7 +105,7 @@ a:hover {
 }
 
 #footer_hr {
-    margin-top: 30px;
+    margin-top: 10px;
     padding-bottom: 5px;
     padding-left: 10px;
     padding-right: 10px;
@@ -123,7 +133,6 @@ a {
 }
 
 #chart_hr {
-    margin: 10px;
 }
 
 .flash {
@@ -161,23 +170,55 @@ a {
 #desc_hr {
     padding-top: 40px;
     padding-bottom: 30px;
-    padding-left: 20px;
-    font-size: 20px;
-    text-align: center;
+    font-size: 25px;
+    text-align: left;
     margin-bottom: 30px;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 dt {
-    font-size: 20px;
+    font-size: 25px;
     text-align: center;
 }
 
 #thanks_hr {
     text-align: center;
-    margin-top: -30px;
-    font-size: 30px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
 }
 
 #data_info_hr {
-    margin-bottom: 45px;
+    font-size: 20px;
+    text-align: left;
+    margin-top: 0px;
+    margin-left: 25px;
+    margin-right: 25px;
+    margin-bottom: 30px;
+}
+
+.main_link_hr {
+    color:#000;
+}
+
+.main_link_hr:hover {
+    color: #0EC2D2;
+}
+
+.about {
+    margin-left: 30px;
+    margin-right: 30px;
+}
+
+.about_title_hr {
+    font-size: 60px;
+}
+
+.about_subtitle_hr {
+}
+
+.just_data_hr {
+    margin-top: 10px;
+    margin-left: -10px;
 }

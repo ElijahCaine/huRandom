@@ -1,24 +1,41 @@
 {% extends "layout.html" %}
 {% block body %}
+    <p id="desc_hr">
+        HuRandom is a project developed to study the human mind's ability to
+generate and comprehend 'random' numbers. To contribute just submit the first
+number you can think of!
+    </p>
+
     <div id="content_hr">
         <div class="row">
 
-            <div class="col-md-8" id="number_hr">
-                <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
-                    <dl>
-                        <strong><dt>Enter Your Random Number:</strong>
-                        <dd><input type="text" name="user_input" class="form-control">
-                        <dd><input type="submit" value="Submit" class="btn btn-primary btn-lg" id="submit_btn_hr">
-                    </dl>
-                </form>
-            </div>
+        <div class="col-md-8" id="number_hr">
+            <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+                <dl>
+                    <dt>Enter Your Random Number:
+                    <dd><input type="text" name="user_input" class="form-control">
+                    <dd><input type="submit" value="Submit" class="btn btn-primary btn-lg" id="submit_btn_hr">
+                </dl>
+            </form>
+        </div>
 
-                <div class="col-md-4" id="number_hr">
-                    <br>
-                    <a href="{{ url_for('goto_data') }}" type="button" class="btn btn-danger btn-lg">No. Just the Data.</button></a>
-                </div>
+        <div class="col-md-4" id="number_hr">
+            <br>
+            <a href="{{ url_for('goto_data') }}" type="button" class="btn btn-danger btn-lg just_data_hr">Just The Data.</button></a>
+        </div>
 
         </div>
     </div>
+    <p id="data_info_hr">
+        HuRandom is an <a href="{{ url_for('about_page') }}"
+class="main_link_hr">Open Project</a> created with the purpose of exploring our
+relationship with random numbers.  When you submit a number to the project it
+will be stored in a database and be publicly accessible anyone to study. You
+will then be redirected to a visualization of the dataset and be given an
+opportunity to download the raw data.  For more information visit the <a
+href="{{ url_for('about_page') }}" class="main_link_hr"> About Page</a>.
+    </p>
+
+
 
 {% endblock %}

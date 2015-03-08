@@ -4,25 +4,21 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
     <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 </head>
-<div class=page>
+<div class="page">
     <div id="main_hr">
 
         <div id="header_hr">
             <a href="{{ url_for('add_entry_page') }}"><h1>HuRandom*</h1></a>
-            <em><h5 id="top_hr">A project by Elijah Caine about 'random' numbers</h5></em>
+            <em><h5 id="top_hr">A project about 'random' numbers</h5></em>
         </div>
-        <p id="desc_hr">
-            HuRandom is a project developed by Elijah Caine to study the
-            human mind's ability to generate and comprehend 'random' numbers.
-        </p>
-
 
         {% block body %}{% endblock %}
 
 
         <div class="metanav_hr">
                 <a class="btn btn-warning btn-xs" href="https://github.com/ElijahCaine/huRandom/issues">*ISSUES</a>
-                <a class="btn btn-info btn-xs" href="{{ url_for('about_page') }}">about</a>
+                <a class="btn btn-info btn-xs" href="{{ url_for('about_page') }}">About</a>
+                <a class="btn btn-success btn-xs" href="https://github.com/ElijahCaine/huRandom">Source</a>
             {% if not session.logged_in %}
                 <a href="{{ url_for('login') }}" class="btn btn-default btn-xs">Admin Login</a>
             {% else %}
@@ -41,10 +37,10 @@
 
 <div id="footer_hr">
     <p>HuRandom is made with 
-        <a href="https://github.com/ElijahCaine/huRandom"><3</a>,
         <a href="http://flask.pocoo.org/">Flask</a>,
-        <a href="http://pygal.org/">Pugal</a>, and
-        <a href="http://getbootstrap.com/">Bootstrap</a> by  
+        <a href="http://pygal.org/">Pygal</a>,  
+        <a href="http://getbootstrap.com/">Bootstrap</a>, and
+        <a href="https://github.com/ElijahCaine/huRandom"><3</a> by 
         <a href="http://elijahcaine.me">Elijah Caine</a>.
     </p>
     <p>
