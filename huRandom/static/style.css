@@ -49,11 +49,8 @@ a:hover {
 }
 
 #content_hr {
-    padding-left: 17px;
-    padding-right: 17px;
-    min-height: 100%;
-    padding-top: 10px;
-    padding-bottom: 40px;
+    display: inline-block;
+    text-align: right;
 }
 
 #intro_hr {
@@ -70,7 +67,8 @@ a:hover {
     font-family: Verdana, Geneva, sans-serif;
 }
 
-#data_hr {
+.input_hr {
+    text-align: center;
 }
 
 #submit_btn_hr {
@@ -81,14 +79,6 @@ a:hover {
     text-align: center;
     font-style: italic;
     text-decoration: bold;
-}
-
-
-#data_svg_hr {
-    width: 90%; 
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 20px;
 }
 
 #download_prompt_hr {
@@ -220,7 +210,6 @@ dt {
 
 .just_data_hr {
     margin-top: 10px;
-    margin-left: -10px;
 }
 
 .alert_hr {
