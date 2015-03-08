@@ -1,16 +1,10 @@
 from os import environ
-
 import sys
-
 import sqlite3
-
 from contextlib import closing
-
 from flask import Flask, request, session, g, redirect, url_for, abort, \
      render_template, flash
-
 import csv
-
 import pygal
 from pygal.style import CleanStyle
 
@@ -98,7 +92,10 @@ def admin_page():
     """
     Renders admin interface page.
     """
-    return render_template('admin.html')
+    n = fetch_entries()
+    chart = graph_data(n)
+    avg = sum(n)/len(n)
+    return render_template('admin.html', entries=n, chart=chart, avg=avg)
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -172,12 +169,20 @@ def graph_data(data):
     return chart.render(is_unicode=True)
 
 def compile_data(data):
+    """
+    Compiles data for graphing
+    Splits the data evenly into #bin_num of 'bins' which store the frequency of
+    number occurences within each range.
+    Breaks if you enter a number that is magnitudes larger than the rest of
+    the data.
+    """
     bin_num = 20
     bin_range = int((max(data) - min(data)) / bin_num)+1
     output = [0 for i in range(bin_num)]
     axis = ['-' for i in range(bin_num)]
     n = bin_num - len(data)
 
+    # Purely debigging information
     print('Number of Bins: ' + str(bin_num) +\
           ' | range for each bin: ' + str(bin_range) +\
           ' | min value: ' + str(min(data)) +\
@@ -193,11 +198,13 @@ def compile_data(data):
                     output[i] += 1
             axis[i] += " to " + str(bin_range*(i+1)+min(data))
 
-    print(output)
     return(output, axis, n)
 
 @app.route('/about')
-def about_page():
+def goto_about():
+    """
+    Returns about page
+    """
     return render_template('about.html')
 
 if __name__ == '__main__':

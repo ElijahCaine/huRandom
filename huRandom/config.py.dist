@@ -1,8 +1,8 @@
 # cp /path/to/config.py.dist /path/to/config.py
 # edit config.py
 # export HURANDOM_SETTINGS=/path/to/config.py
-DATABASE = '/tmp/huRandom.db'
-DEBUG = True
-SECRET_KEY = 'asdf'
-USERNAME = 'admin'
-PASSWORD = 'password'
+DATABASE = '/path/to/database.db'   # This is commonly /tmp/huRandom.db
+DEBUG = True                        # False for production
+SECRET_KEY = 'secret_value'         # This is a very important secret key
+USERNAME = 'admin_username'         # This is your admin usename
+PASSWORD = 'admin_password'         # This is your admin password

@@ -163,7 +163,7 @@ a {
     padding-top: 40px;
     padding-bottom: 30px;
     font-size: 25px;
-    text-align: left;
+    text-align: center;
     margin-bottom: 30px;
     padding-left: 20px;
     padding-right: 20px;
@@ -205,9 +205,16 @@ dt {
 
 .about_title_hr {
     font-size: 60px;
+    font-weight: 500;
 }
 
 .about_subtitle_hr {
+    font-size: 35px;
+    font-weight: 300;
+}
+
+.about_content_hr {
+    font-size: 20px;
 }
 
 #just_data_hr {

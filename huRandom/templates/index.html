@@ -13,7 +13,7 @@ number you can think of!
         <div id="number_hr">
             <form class="form-inline row" action="{{ url_for('add_entry') }}" method=post class=add-entry>
                     <div class="form-group">
-                    <input type="text" name="user_input" class="col-md-4 form-control input-lg" placeholder="Enter a Random Number">
+                    <input type="text" name="user_input" class="col-xs-12 col-md-8 form-control input-lg" placeholder="Enter a Number">
                     <input type="submit" value="Submit" class="btn btn-primary btn-lg" id="input_hr"> 
                     </div>
             </form>
@@ -26,8 +26,8 @@ number you can think of!
         HuRandom is an <a href="{{ url_for('about_page') }}"
 class="main_link_hr">Open Project</a> created with the purpose of exploring our
 relationship with random numbers.  When you submit a number to the project it
-will be stored in a database and be publicly accessible anyone to study. You
-will then be redirected to a visualization of the dataset and be given an
+will be stored in a database and be publicly accessible for anyone to study.
+You will then be redirected to a visualization of the dataset and be given an
 opportunity to download the raw data.  For more information visit the <a
 href="{{ url_for('about_page') }}" class="main_link_hr"> About Page</a>.
     </p>
