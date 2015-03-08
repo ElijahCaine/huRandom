@@ -172,7 +172,7 @@ def graph_data(data):
     return chart.render(is_unicode=True)
 
 def compile_data(data):
-    bin_num = 10
+    bin_num = 15
     data_true = data
     j_old = min(data)
     bin_range = int((max(data) - min(data))/bin_num)+1

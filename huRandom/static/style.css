@@ -222,3 +222,10 @@ dt {
     margin-top: 10px;
     margin-left: -10px;
 }
+
+.alert_hr {
+    text-align: center;
+    font-size: 30px;
+    color: #FFF;
+    background-color: #D9534F;
+}

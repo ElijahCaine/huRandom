@@ -9,19 +9,23 @@ number you can think of!
     <div id="content_hr">
         <div class="row">
 
+        {% for message in get_flashed_messages() %}
+            <p class="alert_hr">{{ message }}</p>
+        {% endfor %}
+
         <div class="col-md-8" id="number_hr">
             <form action="{{ url_for('add_entry') }}" method=post class=add-entry>
                 <dl>
                     <dt>Enter Your Random Number:
                     <dd><input type="text" name="user_input" class="form-control">
-                    <dd><input type="submit" value="Submit" class="btn btn-primary btn-lg" id="submit_btn_hr">
+                    <a href="{{ url_for('goto_data') }}" type="button" class="btn btn-danger btn-lg just_data_hr">Just The Data.</button></a>
                 </dl>
             </form>
         </div>
 
         <div class="col-md-4" id="number_hr">
+                    <dd><input type="submit" value="Submit" class="btn btn-primary btn-lg" id="submit_btn_hr">
             <br>
-            <a href="{{ url_for('goto_data') }}" type="button" class="btn btn-danger btn-lg just_data_hr">Just The Data.</button></a>
         </div>
 
         </div>
