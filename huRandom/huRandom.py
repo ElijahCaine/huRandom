@@ -70,7 +70,7 @@ def add_entry():
             flash('\'' + request.form['user_input'] + '\' is too high! Please submit a number below 1,000,000.')
             return redirect(url_for('add_entry_page'))
         elif float(request.form['user_input']) < -1000000:
-            flash('\'' + request.form['user_input'] + '\' is too high! Please submit a number above -1,000,000.')
+            flash('\'' + request.form['user_input'] + '\' is too low! Please submit a number above -1,000,000.')
             return redirect(url_for('add_entry_page'))
     except:
         new = None
