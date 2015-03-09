@@ -12,7 +12,6 @@ RUN pacman-db-upgrade
 RUN pacman --noconfirm -S python2 python2-pip python2-setuptools gcc sqlite
 
 # Set environment variables
-RUN cp /huRandom/huRandom/config.py.dist /huRandom/huRandom/config.py
 ENV HURANDOM_SETTINGS=/huRandom/huRandom/config.py
 
 # Install python requirements
