@@ -56,6 +56,7 @@ def add_entry_page():
     """
     The main page where users enter number
     """
+    session['logged_in'] = False 
     return render_template('index.html')
 
 @app.route('/add', methods=['POST'])
@@ -101,7 +102,10 @@ def admin_page():
     n = fetch_entries()
     chart = graph_data(n)
     avg = sum(n)/len(n)
-    return render_template('admin.html', entries=n, chart=chart, avg=avg)
+    if session['logged_in'] == True:
+        return render_template('admin.html', entries=n, chart=chart, avg=avg)
+    else:
+        return redirect(url_for('add_entry_page'))
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
