@@ -65,6 +65,9 @@ def add_entry():
     """
     try:
         float(request.form['user_input'])
+        if float(request.form['user_input']) > 1000000:
+            flash('\'' + request.form['user_input'] + '\' is too high! Please submit a number under 1,000,000.')
+            return redirect(url_for('add_entry_page'))
     except:
         new = None
         flash('\'' + request.form['user_input'] + '\' isn\'t a real number!')
