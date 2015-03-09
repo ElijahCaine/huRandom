@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+{% block body %}
+    <p id="desc_hr">
+        HuRandom is a project developed to study the human mind's ability to
+generate and comprehend 'random' numbers. To contribute just submit the first
+number you can think of!
+    </p>
+
+        {% for message in get_flashed_messages() %}
+            <p class="bg-danger">{{ message }}</p>
+        {% endfor %}
+
+        <div id="number_hr">
+            <form class="form-inline row" action="{{ url_for('add_entry') }}" method=post class=add-entry>
+                    <div class="form-group">
+                    <input type="text" name="user_input" class="col-xs-12 col-md-8 form-control input-lg" placeholder="Enter a Number">
+                    <input type="submit" value="Submit" class="btn btn-primary btn-lg" id="input_hr"> 
+                    </div>
+            </form>
+            <div class="row" id="just_data_hr">
+                <a href="{{ url_for('goto_data') }}" type=button class="btn btn-warning col-md-6 btn-lg">See the Data</a>
+            </div>
+        </div>
+
+    <p id="data_info_hr">
+        HuRandom is an <a href="{{ url_for('goto_about') }}"
+class="main_link_hr">Open Project</a> created with the purpose of exploring our
+relationship with random numbers.  When you submit a number to the project it
+will be stored in a database and be publicly accessible for anyone to study.
+You will then be redirected to a visualization of the dataset and be given an
+opportunity to download the raw data.  For more information visit the <a
+href="{{ url_for('goto_about') }}" class="main_link_hr"> About Page</a>.
+    </p>
+
+<head>
+<title>HuRandom: A project about 'random' numbers</title>
+</head>
+
+{% endblock %}

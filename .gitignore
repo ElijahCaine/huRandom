@@ -1,0 +1,9 @@
+config.py
+__pycache__
+tmp
+.*.swp
+.*.swo
+*.csv
+*.svg
+*.db
+*.pyc

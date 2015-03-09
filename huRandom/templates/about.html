@@ -1,0 +1,95 @@
+{% extends "layout.html" %}
+{% block body %}
+
+<div class="about">
+    <h2 class="about_title_hr">About</h2>
+    <p class="about_content_hr">
+In October of 2014 it dawned upon me that I had no idea what it took to justify
+a number being 'random' or 'non-random'. <a
+href="https://en.wikipedia.org/wiki/Statistical_randomness"
+class="main_link_hr">Wikipedia defines Statistical randomness</a> as being 'A
+numeric sequence containing no recognizable patterns or regularities.'; for
+example, the digits of π and the result of a dice roll are statistically
+random.
+    </p>
+
+    <p class="about_content_hr">
+Around this time I was also learning about the Linux special files <a
+href="https://en.wikipedia.org/wiki//dev/random"
+class="main_link_hr">`/dev/random` and `/dev/urandom`</a>; one of which streams
+out truly random data while the other streams out psuedo-random data. Although
+I knew from looking at their documentation that one was truly random and the
+other was not when you print out the values produced by both there was no
+difference.
+    </p>
+
+    <p class="about_content_hr">
+This got me to ask the question "How random is the human random number
+generator?" I would assume we're not truly random because we love to find and
+use patterns even in things that don't have any, but if you got a crowd of
+tens, hundreds, or thousands of people to give you their own 'random' number
+would it be a numeric sequence containing no recognizable patterns or
+regularities, or would it hold patterns and regularities? This is why I created
+the HuRandom project.
+    </p>
+
+    <h3 class="about_subtitle_hr">Open Everything</h3>
+
+    <p class="about_content_hr">
+HuRandom is 100% Open and Free. All of the code is available on Github under <a
+href="https://github.com/ElijahCaine/huRandom/blob/develop/LICENCE"
+class="main_link_hr">The MIT License</a>. Transparency is also key, not only in
+how the data is collected for HuRandom, but also the data itself, so our entire
+dataset is available under a <a
+href="http://creativecommons.org/licenses/by-sa/4.0/"
+class="main_link_hr">Creative Commons Attribution-ShareAlike 4.0 International
+license</a>. Of course you are trusting that the publicly available code is the
+code I'm using, and that the data I make available is actually the entirety of
+the data I collect, and that I'm not injecting a virus into your computer right
+now... but these are risks we each take every day; I can only claim
+transparency, it's up to you to choose weather or not to trust me and the
+HuRandom project.
+    </p>
+
+    <p class="about_content_hr">
+
+<span xmlns:dct="http://purl.org/dc/terms/"
+href="http://purl.org/dc/dcmitype/Dataset" property="dct:title"
+rel="dct:type">HuRandom Data</span> by <a class="main_link_hr"
+xmlns:cc="http://creativecommons.org/ns#"
+href="http://huRandom.elijahcaine.me/data" property="cc:attributionName"
+rel="cc:attributionURL">Elijah Caine</a> is licensed under a <a class="main_link_hr" el="license"
+href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons
+Attribution-ShareAlike 4.0 International License</a>.
+    </p>
+
+    <h3 class="about_subtitle_hr">Technical</h3>
+
+    <p class="about_content_hr">
+HuRandom is a webapp built with the <a href="http://flask.pocoo.org/"
+class="main_link_hr">Flask Python Microframework</a> and uses <a
+href="http://pygal.org/" class="main_link_hr">Pygal</a> to generate graphs, <a
+href="http://getbootstrap.com/" class="main_link_hr">Bootstrap CSS</a> for the
+interface. It is deployed with <a
+href="https://github.com/ElijahCaine/huRandom/blob/develop/Dockerfile"
+class="main_link_hr">Docker</a> on CentOS 6 Digital Ocean servers, more info on
+deploying  and development can be found in the <a
+href="https://github.com/ElijahCaine/huRandom/blob/develop/README.md"
+class="main_link_hr">README</a>.
+    </p>
+
+    <h3 class="about_subtitle_hr">Contact</h3>
+    <p class="about_content_hr">
+I can be contacted by email at elijahcainemv@gmail.com or on irc.freenode.net
+as pop. For more information about me go to my website <a
+href="http://elijahcaine.me" class="main_link_hr">elijahcaine.me</a> and to
+learn more about my development see my <a href="https://github.com/ElijahCaine"
+class="main_link_hr">Github page</a>
+    </p>
+</div>
+
+<head>
+    <title>HuRandom: About</title>
+</head>
+
+{% endblock %}

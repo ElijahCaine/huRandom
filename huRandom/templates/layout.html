@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+</head>
+<div class="page">
+    <div id="main_hr">
+
+        <div id="header_hr">
+            <a href="{{ url_for('add_entry_page') }}"><h1>HuRandom*</h1></a>
+            <em><h5 id="top_hr">A project about 'random' numbers</h5></em>
+        </div>
+
+        {% block body %}{% endblock %}
+
+
+        <div class="metanav_hr">
+                <a class="btn btn-danger btn-xs" href="https://github.com/ElijahCaine/huRandom/issues">ISSUES</a>
+                <a class="btn btn-info btn-xs" href="{{ url_for('goto_about') }}">About</a>
+                <a class="btn btn-success btn-xs" href="https://github.com/ElijahCaine/huRandom">Source</a>
+            {% if not session.logged_in %}
+                <a href="{{ url_for('login') }}" class="btn btn-default btn-xs">Admin Login</a>
+            {% else %}
+                <a href="{{ url_for('admin_page') }}" class="btn btn-default btn-xs">admin</a>
+                <a href="{{ url_for('logout') }}" class="btn btn-default btn-xs">logout</a>
+            {% endif %}
+            {% for message in get_flashed_messages() %}
+                <button class="flash btn btn-default btn-xs">{{ message }}</div>
+            {% endfor %}
+        </div>
+
+    </div>
+</div>
+<footer class=footer>
+<div class=container>
+
+<div id="footer_hr">
+    <p>HuRandom is made with 
+        <a href="http://flask.pocoo.org/">Flask</a>,
+        <a href="http://pygal.org/">Pygal</a>,  
+        <a href="http://getbootstrap.com/">Bootstrap</a>, and
+        <a href="https://github.com/ElijahCaine/huRandom"><3</a> by 
+        <a href="http://elijahcaine.me">Elijah Caine</a>.
+    </p>
+    <p>
+        <a href="https://github.com/ElijahCaine/huRandom">
+            All HuRandom code is licensed under the MIT license.
+        </a>
+
+    </p>
+    <p>All collected data is licensed under 
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>
+        ; for more info read the 
+        <a href="{{ url_for('goto_about') }}">
+            About Page.
+        </a>
+    <p> 
+</div>
+
+</div>
+</footer>
