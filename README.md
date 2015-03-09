@@ -2,6 +2,8 @@ HuRandom
 ========
 *A project about 'random' numbers*
 
+![Main Page Preview Screenshot](http://share.elijahcaine.me/hurandom_main.png)
+
 Installation
 ------------
 HuRandom is developed and tested on Arch Linux with `python --version` 3.4.2 or
