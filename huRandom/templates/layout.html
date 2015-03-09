@@ -17,7 +17,7 @@
 
         <div class="metanav_hr">
                 <a class="btn btn-danger btn-xs" href="https://github.com/ElijahCaine/huRandom/issues">ISSUES</a>
-                <a class="btn btn-info btn-xs" href="{{ url_for('about_page') }}">About</a>
+                <a class="btn btn-info btn-xs" href="{{ url_for('goto_about') }}">About</a>
                 <a class="btn btn-success btn-xs" href="https://github.com/ElijahCaine/huRandom">Source</a>
             {% if not session.logged_in %}
                 <a href="{{ url_for('login') }}" class="btn btn-default btn-xs">Admin Login</a>
@@ -52,7 +52,7 @@
     <p>All collected data is licensed under 
 <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>
         ; for more info read the 
-        <a href="{{ url_for('about_page') }}">
+        <a href="{{ url_for('goto_about') }}">
             About Page.
         </a>
     <p> 
