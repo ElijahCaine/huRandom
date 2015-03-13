@@ -9,6 +9,12 @@
 
     <hr>
 
+    <form class="row" action="{{ url_for('add_status') }}" method=post class=add-entry>
+        <input type="text" name="admin_status" class="col-md-8 form-control input-lg" placeholder="Status">
+        </input>
+        <input type="submit" value="Submit" class="btn btn-primary btn-lg" id="input_hr"> 
+    </form>
+
     <h4>Links</h4>
 
     <a href="{{ url_for('add_entry_page') }}" class="btn btn-default" type="button">Main</a>

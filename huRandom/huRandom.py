@@ -92,7 +92,8 @@ def goto_data():
     n = fetch_entries()
     chart = graph_data(n)
     avg = sum(n)/len(n)
-    return render_template('data.html', entries=n, chart=chart, avg=avg)
+    msg = fetch_message()
+    return render_template('data.html', entries=n, chart=chart, avg=avg, msg=msg)
 
 @app.route('/admin')
 def admin_page():
@@ -216,6 +217,28 @@ def goto_about():
     Returns about page
     """
     return render_template('about.html')
+
+@app.route('/status', methods=['POST'])
+def add_status():
+    """
+    Adds a 'status' to the /data page
+    """
+    g.db.execute('insert into admin (status) values (?)',
+                 [request.form['admin_status']])
+    g.db.commit()
+    flash(str(request.form['admin_status']) + " status added!")
+    return redirect(url_for('admin_page'))
+
+def fetch_message():
+    """
+    Fetches most recent admin message from database and returns string.
+    """
+    message = "Cannot fetch status update!"
+    cur = g.db.execute('select status from admin order by id desc')
+    status = [rows[0] for rows in cur.fetchall()] 
+    message = str(status[0])
+    return message
+
 
 if __name__ == '__main__':
     app.run(host=environ.get('APP_IP'))
